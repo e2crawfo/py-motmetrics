@@ -332,7 +332,11 @@ def id_global_assignment(df):
         fpmatrix[c+no,c] = hc
 
     for r, o in enumerate(oids):
-        df_o = df.loc[o, 'D'].dropna()
+        try:
+            df_o = df.loc[o, 'D'].dropna()
+        except IndexError:
+            continue
+
         for h, ex in df_o.groupby(level=0).count().iteritems():            
             c = hids_idx[h]
 
