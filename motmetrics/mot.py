@@ -266,7 +266,10 @@ class MOTAccumulator(object):
             'Type', 'OId', HId', 'D'                    
         """
 
-        tevents = list(zip(*events))
+        if events:
+            tevents = list(zip(*events))
+        else:
+            tevents = [[], [], [], []]
 
         raw_type = pd.Categorical(tevents[0], categories=['RAW', 'FP', 'MISS', 'SWITCH', 'MATCH'], ordered=False)
         series = [
